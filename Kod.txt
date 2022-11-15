@@ -1,0 +1,36 @@
+String joke[] = {"Mi susu vezetek neve? \n \nChuck mert o csak susu","Hol lapul a legjobban a nyul? \n \nAz uthenger alatt","Mibol van Sylvester Stallone memoriaja? \n \nRambo"};
+String nev = "Julika";
+int cucc = 0;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Beszelgess velem!");
+}
+
+
+void loop() {
+  if (Serial.available() > 0) {
+    String bemenet = Serial.readString();
+    bemenet.trim();
+    Serial.println(" ");
+    Serial.println(bemenet);
+    if (bemenet == "What's your name?") {
+      Serial.println(nev);
+    }
+    if (bemenet == "Be your name ...") {
+      cucc = 1;
+      Serial.println("Adj meg uj nevet!");
+    }
+    if (cucc = 1) {
+      nev = bemenet;
+      cucc = 0;
+    }
+    if (bemenet == "What's the weather right now?") {
+      Serial.println("En egy gep vagyok nem ott ahol te vagy, nezz ki az ablakon es megtudod. A hofok pedig -20 es +40 kozott van.");
+    }
+    if (bemenet == "Tell me a dad joke!") {
+      Serial.println(joke[random(3)]);
+    }
+  }
+  delay(10);
+}
